@@ -37,7 +37,15 @@ var stringifyJSON = function(obj) {
     if(Object.getOwnPropertyNames(obj).length === 0) { //base case: the object is empty
       return '{}';
     } else {
-        return null;
+        var stringElems = "";
+        for(var key in obj) {
+          if((typeof obj[key] === 'function') || (obj[key] === undefined)) {
+          } else {
+              stringElems += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
+          }
+        }
+        stringElems = stringElems.slice(0, stringElems.length - 1); //remove final comma
+        return '{' + stringElems + '}';
       }
   } else { return obj.toString(); } //this code should never be executed
 };
