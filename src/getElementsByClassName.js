@@ -19,7 +19,7 @@ var getElementsByClassName = function(className){
         var node = children[i];
         checkChildren(node);
       }
-    } else { return; }
+    } //else { return; }
   }
   checkChildren(document.body);
   return nodes;
